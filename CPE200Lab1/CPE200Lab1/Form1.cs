@@ -13,6 +13,7 @@ namespace CPE200Lab1
     public partial class Form1 : Form
     {
         float num1 = 999999999 , num2 = 999999999, check = 0 , mark = 0 ,point = 0;
+        bool checkpoint = false;
         public Form1()
         {
             InitializeComponent();
@@ -45,9 +46,17 @@ namespace CPE200Lab1
             }
             else
             {
-                lblDisplay.Text = btn.Text;
+                if(btn.Text ==".")
+                {
+                    lblDisplay.Text = "0" + btn.Text;
+                }
+                else
+                {
+                    lblDisplay.Text = btn.Text;
+                }
                 check = 0;
             }
+            checkpoint = false;
         }
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -57,83 +66,87 @@ namespace CPE200Lab1
             check = 0;
             mark = 0;
             point = 0;
+            checkpoint = false;
         }
         private void btnY_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            if (num1 == 999999999)
+            if (checkpoint == false)
             {
-                num1 = float.Parse(lblDisplay.Text);
-            }
-            else
-            {
-                if (btn.Text == "%" && mark != 3 && mark != 4)
+                checkpoint = true;
+                Button btn = (Button)sender;
+                if (num1 == 999999999)
                 {
-                    num2 = (num1 / 100) * float.Parse(lblDisplay.Text);
-                }
-                else if(mark == 3 || mark == 4)
-                {
-                    num2 = float.Parse(lblDisplay.Text) / 100;
+                    num1 = float.Parse(lblDisplay.Text);
                 }
                 else
                 {
-                    num2 = float.Parse(lblDisplay.Text);
+                    if (btn.Text == "%" && mark != 3 && mark != 4)
+                    {
+                        num2 = (num1 / 100) * float.Parse(lblDisplay.Text);
+                    }
+                    else if (btn.Text == "%" && mark == 3 || mark == 4)
+                    {
+                        num2 = float.Parse(lblDisplay.Text) / 100;
+                    }
+                    else
+                    {
+                        num2 = float.Parse(lblDisplay.Text);
+                    }
                 }
-            }
-            if (num1 != 999999999 && num2 != 999999999 && btn.Text != "%")
-            {
-                if (mark == 1)
+                if (num1 != 999999999 && num2 != 999999999 && btn.Text != "%")
                 {
-                    num1 = num1 + num2;
+                    if (mark == 1)
+                    {
+                        num1 = num1 + num2;
+                    }
+                    else if (mark == 2)
+                    {
+                        num1 = num1 - num2;
+                    }
+                    else if (mark == 3)
+                    {
+                        num1 = num1 * num2;
+                    }
+                    else if (mark == 4)
+                    {
+                        num1 = num1 / num2;
+                    }
                 }
-                else if(mark == 2)
+                if (btn.Text == "+")
                 {
-                    num1 = num1 - num2;
+                    mark = 1;
+                    lblDisplay.Text = Convert.ToString(num1);
+                    check = 1;
+                    point = 0;
                 }
-                else if (mark == 3)
+                else if (btn.Text == "-")
                 {
-                    num1 = num1 * num2;
+                    mark = 2;
+                    lblDisplay.Text = Convert.ToString(num1);
+                    check = 1;
+                    point = 0;
                 }
-                else if (mark == 4)
+                else if (btn.Text == "X")
                 {
-                    num1 = num1 / num2;
+                    mark = 3;
+                    lblDisplay.Text = Convert.ToString(num1);
+                    check = 1;
+                    point = 0;
+                }
+                else if (btn.Text == "÷")
+                {
+                    mark = 4;
+                    lblDisplay.Text = Convert.ToString(num1);
+                    check = 1;
+                    point = 0;
+                }
+                else if (btn.Text == "%")
+                {
+                    lblDisplay.Text = Convert.ToString(num2);
+                    check = 1;
+                    point = 0;
                 }
             }
-            if (btn.Text == "+")
-            {
-                mark = 1;
-                lblDisplay.Text = Convert.ToString(num1);
-                check = 1;
-                point = 0;
-            }
-            else if (btn.Text == "-")
-            {
-                mark = 2;
-                lblDisplay.Text = Convert.ToString(num1);
-                check = 1;
-                point = 0;
-            }
-            else if (btn.Text == "X")
-            {
-                mark = 3;
-                lblDisplay.Text = Convert.ToString(num1);
-                check = 1;
-                point = 0;
-            }
-            else if (btn.Text == "÷")
-            {
-                mark = 4;
-                lblDisplay.Text = Convert.ToString(num1);
-                check = 1;
-                point = 0;
-            }
-            else if (btn.Text == "%")
-            {
-                lblDisplay.Text = Convert.ToString(num2);
-                check = 1;
-                point = 0;
-            }
-            
         }
         private void btnZ_Click(object sender, EventArgs e)
         {
