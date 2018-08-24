@@ -12,7 +12,7 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        float num1 = 999999999 , num2 = 999999999, sum = 0 , check = 0 , mark = 0 ,point = 0;
+        float num1 = 9999999999 , num2 = 9999999999, sum = 0 , check = 0 , mark = 0 ,point = 0;
         bool checkpoint = false;
         bool checksum = false;
         public Form1()
@@ -63,22 +63,33 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
-            num1 = 999999999;
-            num2 = 999999999;
+            num1 = 9999999999;
+            num2 = 9999999999;
             check = 0;
             mark = 0;
             point = 0;
             checkpoint = false;
+            checksum = false;
         }
         private void btnY_Click(object sender, EventArgs e)
         {
-            if (checkpoint == false)
+            Button btn = (Button)sender;
+            
+            if (checkpoint == false )
             {
                 checkpoint = true;
-                Button btn = (Button)sender;
-                if (num1 == 999999999)
+                if (num1 == 9999999999)
                 {
-                    num1 = float.Parse(lblDisplay.Text);
+                   if(btn.Text == "%")
+                    {
+                        num1 = float.Parse(lblDisplay.Text)/100;
+                        lblDisplay.Text = Convert.ToString(num1);
+                        checksum = true;
+                    }
+                    else
+                    {
+                        num1 = float.Parse(lblDisplay.Text);
+                    }
                 }
                 else
                 {
@@ -95,7 +106,7 @@ namespace CPE200Lab1
                         num2 = float.Parse(lblDisplay.Text);
                     }
                 }
-                if (num1 != 999999999 && num2 != 999999999 && btn.Text != "%")
+                if (num1 != 9999999999 && num2 != 9999999999 && btn.Text != "%" && checksum != true)
                 {
                     if (mark == 1)
                     {
@@ -142,67 +153,43 @@ namespace CPE200Lab1
                     check = 1;
                     point = 0;
                 }
-                else if (btn.Text == "%")
+                else if (btn.Text == "%"&& checksum == false)
                 {
                     lblDisplay.Text = Convert.ToString(num2);
                     check = 1;
                     point = 0;
                 }
+                checksum = false;
             }
         }
         private void btnZ_Click(object sender, EventArgs e)
         {
-            if (checksum == false)
+            checkpoint = false;
+            if (mark == 1)
             {
-                if (mark == 1)
-                {
-                    lblDisplay.Text = Convert.ToString(num1 + float.Parse(lblDisplay.Text));
-                    sum = num1;
-                    num1 = float.Parse(lblDisplay.Text);
-                }
-                if (mark == 2)
-                {
-                    lblDisplay.Text = Convert.ToString(num1 - float.Parse(lblDisplay.Text));
-                    sum = num1;
-                    num1 = float.Parse(lblDisplay.Text);
-                }
-                if (mark == 3)
-                {
-                    lblDisplay.Text = Convert.ToString(num1 * float.Parse(lblDisplay.Text));
-                    sum = num1;
-                    num1 = float.Parse(lblDisplay.Text);
-                }
-                if (mark == 4)
-                {
-                    lblDisplay.Text = Convert.ToString(num1 / float.Parse(lblDisplay.Text));
-                    sum = num1;
-                    num1 = float.Parse(lblDisplay.Text);
-                }
-                checksum = true;
+                lblDisplay.Text = Convert.ToString(num1 + float.Parse(lblDisplay.Text));
+                sum = num1;
+                num1 = float.Parse(lblDisplay.Text);
             }
-            else
+            if (mark == 2)
             {
-                if (mark == 1)
-                {
-                    lblDisplay.Text = Convert.ToString(sum + float.Parse(lblDisplay.Text));
-                    num1 = float.Parse(lblDisplay.Text);
-                }
-                if (mark == 2)
-                {
-                    lblDisplay.Text = Convert.ToString(sum - float.Parse(lblDisplay.Text));
-                    num1 = float.Parse(lblDisplay.Text);
-                }
-                if (mark == 3)
-                {
-                    lblDisplay.Text = Convert.ToString(sum * float.Parse(lblDisplay.Text));
-                    num1 = float.Parse(lblDisplay.Text);
-                }
-                if (mark == 4)
-                {
-                    lblDisplay.Text = Convert.ToString(sum / float.Parse(lblDisplay.Text));
-                    num1 = float.Parse(lblDisplay.Text);
-                }
+                lblDisplay.Text = Convert.ToString(num1 - float.Parse(lblDisplay.Text));
+                sum = num1;
+                num1 = float.Parse(lblDisplay.Text);
             }
+            if (mark == 3)
+            {
+                lblDisplay.Text = Convert.ToString(num1 * float.Parse(lblDisplay.Text));
+                sum = num1;
+                num1 = float.Parse(lblDisplay.Text);
+            }
+            if (mark == 4)
+            {
+                lblDisplay.Text = Convert.ToString(num1 / float.Parse(lblDisplay.Text));
+                sum = num1;
+                num1 = float.Parse(lblDisplay.Text);
+            }
+            mark = 0;
         }
     }
 }
