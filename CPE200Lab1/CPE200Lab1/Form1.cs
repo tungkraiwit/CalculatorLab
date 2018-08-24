@@ -12,8 +12,7 @@ namespace CPE200Lab1
 {
     public partial class Form1 : Form
     {
-        float num1 = 999999999 , num2 = 999999999, num3 = 0 , num4 = 0 ,point = 0;
-
+        float num1 = 999999999 , num2 = 999999999, check = 0 , mark = 0 ,point = 0;
         public Form1()
         {
             InitializeComponent();
@@ -21,7 +20,7 @@ namespace CPE200Lab1
         private void btnX_Click(object sender, EventArgs e)
         {            
             Button btn = (Button)sender;
-            if (num3 == 0)
+            if (check == 0)
             {
                 if (btn.Text == ".")
                 {
@@ -47,7 +46,7 @@ namespace CPE200Lab1
             else
             {
                 lblDisplay.Text = btn.Text;
-                num3 = 0;
+                check = 0;
             }
         }
         private void btnClear_Click(object sender, EventArgs e)
@@ -55,8 +54,8 @@ namespace CPE200Lab1
             lblDisplay.Text = "0";
             num1 = 999999999;
             num2 = 999999999;
-            num3 = 0;
-            num4 = 0;
+            check = 0;
+            mark = 0;
             point = 0;
         }
         private void btnY_Click(object sender, EventArgs e)
@@ -68,11 +67,11 @@ namespace CPE200Lab1
             }
             else
             {
-                if (btn.Text == "%" && num4 != 3 && num4 != 4)
+                if (btn.Text == "%" && mark != 3 && mark != 4)
                 {
                     num2 = (num1 / 100) * float.Parse(lblDisplay.Text);
                 }
-                else if(num4 == 3 || num4 == 4)
+                else if(mark == 3 || mark == 4)
                 {
                     num2 = float.Parse(lblDisplay.Text) / 100;
                 }
@@ -83,80 +82,80 @@ namespace CPE200Lab1
             }
             if (num1 != 999999999 && num2 != 999999999 && btn.Text != "%")
             {
-                if (num4 == 1)
+                if (mark == 1)
                 {
                     num1 = num1 + num2;
                 }
-                else if(num4 == 2)
+                else if(mark == 2)
                 {
                     num1 = num1 - num2;
                 }
-                else if (num4 == 3)
+                else if (mark == 3)
                 {
                     num1 = num1 * num2;
                 }
-                else if (num4 == 4)
+                else if (mark == 4)
                 {
                     num1 = num1 / num2;
                 }
             }
             if (btn.Text == "+")
             {
-                num4 = 1;
+                mark = 1;
                 lblDisplay.Text = Convert.ToString(num1);
-                num3 = 1;
+                check = 1;
                 point = 0;
             }
             else if (btn.Text == "-")
             {
-                num4 = 2;
+                mark = 2;
                 lblDisplay.Text = Convert.ToString(num1);
-                num3 = 1;
+                check = 1;
                 point = 0;
             }
             else if (btn.Text == "X")
             {
-                num4 = 3;
+                mark = 3;
                 lblDisplay.Text = Convert.ToString(num1);
-                num3 = 1;
+                check = 1;
                 point = 0;
             }
             else if (btn.Text == "÷")
             {
-                num4 = 4;
+                mark = 4;
                 lblDisplay.Text = Convert.ToString(num1);
-                num3 = 1;
+                check = 1;
                 point = 0;
             }
             else if (btn.Text == "%")
             {
                 lblDisplay.Text = Convert.ToString(num2);
-                num3 = 1;
+                check = 1;
                 point = 0;
             }
             
         }
         private void btnZ_Click(object sender, EventArgs e)
         {
-            if (num4 == 1)
+            if (mark == 1)
             {
                 lblDisplay.Text = Convert.ToString(num1 + float.Parse(lblDisplay.Text));
-                num4 = 0;
+                mark = 0;
             }
-            if (num4 == 2)
+            if (mark == 2)
             {
                 lblDisplay.Text = Convert.ToString(num1 - float.Parse(lblDisplay.Text));
-                num4 = 0;
+                mark = 0;
             }
-            if (num4 == 3)
+            if (mark == 3)
             {
                 lblDisplay.Text = Convert.ToString(num1 * float.Parse(lblDisplay.Text));
-                num4 = 0;
+                mark = 0;
             }
-            if (num4 == 4)
+            if (mark == 4)
             {
                 lblDisplay.Text = Convert.ToString(num1 / float.Parse(lblDisplay.Text));
-                num4 = 0;
+                mark = 0;
             }
         }
     }
