@@ -140,21 +140,25 @@ namespace CPE200Lab1
             if (mark == 1)
             {
                 lblDisplay.Text = Convert.ToString(num1 + float.Parse(lblDisplay.Text));
+                num1 = float.Parse(lblDisplay.Text);
                 mark = 0;
             }
             if (mark == 2)
             {
                 lblDisplay.Text = Convert.ToString(num1 - float.Parse(lblDisplay.Text));
+                num1 = float.Parse(lblDisplay.Text);
                 mark = 0;
             }
             if (mark == 3)
             {
                 lblDisplay.Text = Convert.ToString(num1 * float.Parse(lblDisplay.Text));
+                num1 = float.Parse(lblDisplay.Text);
                 mark = 0;
             }
             if (mark == 4)
             {
                 lblDisplay.Text = Convert.ToString(num1 / float.Parse(lblDisplay.Text));
+                num1 = float.Parse(lblDisplay.Text);
                 mark = 0;
             }
         }
