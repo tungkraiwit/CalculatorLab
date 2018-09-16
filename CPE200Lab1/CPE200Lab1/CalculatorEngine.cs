@@ -16,7 +16,8 @@ namespace CPE200Lab1
 
         private bool isOperator(string str)
         {
-            switch(str) {
+            switch(str)
+            {
                 case "+":
                 case "-":
                 case "X":
@@ -59,7 +60,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString();
                     }
                 case "1/x":
                     if(operand != "0")
@@ -79,7 +80,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString();
                     }
                     break;
             }
@@ -111,15 +112,23 @@ namespace CPE200Lab1
                         if (parts[0].Length > maxOutputSize)
                         {
                             return "E";
-                        }
+                        }                        
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        return result.ToString();
                     }
                     break;
                 case "%":
                     //your code here
+                    if(secondOperand != "0")
+                    {
+                        return (Convert.ToDouble(firstOperand) /100).ToString();
+                    }
+                    else
+                    {
+                        return (((Convert.ToDouble(firstOperand)/100 )* Convert.ToDouble(secondOperand))+Convert.ToDouble(firstOperand)).ToString();
+                    }
                     break;
             }
             return "E";

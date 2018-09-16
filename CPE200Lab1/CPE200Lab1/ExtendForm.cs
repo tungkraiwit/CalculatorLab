@@ -25,7 +25,8 @@ namespace CPE200Lab1
 
         private bool isOperator(char ch)
         {
-            switch(ch) {
+            switch(ch)
+            {
                 case '+':
                 case '-':
                 case 'X':
@@ -37,7 +38,7 @@ namespace CPE200Lab1
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
-                if (lblDisplay.Text is "Error")
+            if (lblDisplay.Text is "Error")
             {
                 return;
             }
@@ -105,7 +106,8 @@ namespace CPE200Lab1
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
-            } else
+            }
+            else
             {
                 lblDisplay.Text = result;
             }
