@@ -129,7 +129,7 @@ namespace CPE200Lab1
                     {
                         return (((Convert.ToDouble(firstOperand)/100 )* Convert.ToDouble(secondOperand))+Convert.ToDouble(firstOperand)).ToString();
                     }
-                    break;
+                   
             }
             return "E";
         }
