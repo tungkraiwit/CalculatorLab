@@ -13,54 +13,29 @@ namespace CPE200Lab1
             // your code here
             Stack<string> strsum = new Stack<string>();
             string[] parts;
-            string sum;
             string firstOperand;
             string secondOperand;
-            int j=0;
             parts = str.Split(' ');
-            if(parts.Length > 2)
+            for (int i = 0; i < parts.Length; i++)
             {
-                for (int i = 0; i < parts.Length; i++)
+                if (isNumber(parts[i]) && parts.Length >=3)
                 {
-                    if (parts[i] == "+" || parts[i] == "-" || parts[i] == "X" || parts[i] == "÷")
-                    {
-                        if(j>=1)
-                        {
-                            secondOperand = strsum.Pop();
-                            j--;
-                            if (j <= 0)
-                            {
-                                return "E";
-                            }
-                            else
-                            {
-                                firstOperand = strsum.Pop();
-                                j--;
-                                sum = calculate(parts[i], firstOperand, secondOperand);
-                                strsum.Push(sum);
-                                j++;
-                            }
-                        }
-                        else
-                        {
-                            return "E";
-                        }
-                    }
-                    else
-                    {
-                        strsum.Push(parts[i]);
-                        j++;
-                    }                    
+                    strsum.Push(parts[i]);
                 }
-                if(j==1)
+                else if(strsum.Count >=2)
                 {
-                    j--;
-                    return strsum.Pop();
+                    secondOperand = strsum.Pop();
+                    firstOperand = strsum.Pop();
+                    strsum.Push(calculate(parts[i], firstOperand, secondOperand));
                 }
                 else
                 {
                     return "E";
                 }
+            }
+            if (strsum.Count == 1 )
+            {
+                return strsum.Pop();
             }
             return "E";
         }
