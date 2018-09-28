@@ -13,19 +13,17 @@ namespace CPE200Lab1
             // your code here
             Stack<string> strsum = new Stack<string>();
             string[] parts;
-            string firstOperand;
-            string secondOperand;
             parts = str.Split(' ');
             for (int i = 0; i < parts.Length; i++)
             {
-                if (isNumber(parts[i]) && parts.Length >=3 )
+                if (isNumber(parts[i]) && parts.Length >=2 )
                 {
                     strsum.Push(parts[i]);
-                }
-                else if(strsum.Count >=2 )
-                {
-                    secondOperand = strsum.Pop();
-                    firstOperand = strsum.Pop();
+                }                
+                else if(strsum.Count > 1 )
+                {                    
+                    string secondOperand = strsum.Pop();
+                    string firstOperand = strsum.Pop();
                     strsum.Push(calculate(parts[i], firstOperand, secondOperand));
                 }
                 else if (strsum.Count == 1 && i == parts.Length-1 && !isOperator(parts[i]))
