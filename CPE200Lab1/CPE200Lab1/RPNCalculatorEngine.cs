@@ -16,21 +16,28 @@ namespace CPE200Lab1
             parts = str.Split(' ');
             for (int i = 0; i < parts.Length; i++)
             {
-                if (isNumber(parts[i]) && parts.Length >=2 )
+                try
                 {
-                    strsum.Push(parts[i]);
-                }                
-                else if(strsum.Count > 1 )
-                {                    
-                    string secondOperand = strsum.Pop();
-                    string firstOperand = strsum.Pop();
-                    strsum.Push(calculate(parts[i], firstOperand, secondOperand));
+                    if (isNumber(parts[i]) && parts.Length >= 2)
+                    {
+                        strsum.Push(parts[i]);
+                    }
+                    else if (strsum.Count > 1)
+                    {
+                        string secondOperand = strsum.Pop();
+                        string firstOperand = strsum.Pop();
+                        strsum.Push(calculate(parts[i], firstOperand, secondOperand));
+                    }
+                    else if (strsum.Count == 1 && i == parts.Length - 1 && !isOperator(parts[i]))
+                    {
+                        return strsum.Pop();
+                    }
+                    else
+                    {
+                        return "E";
+                    }
                 }
-                else if (strsum.Count == 1 && i == parts.Length-1 && !isOperator(parts[i]))
-                {
-                    return strsum.Pop();
-                }
-                else
+                catch (InvalidOperationException)
                 {
                     return "E";
                 }
