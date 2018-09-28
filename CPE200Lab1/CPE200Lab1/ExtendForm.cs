@@ -26,12 +26,13 @@ namespace CPE200Lab1
 
         private bool isOperator(char ch)
         {
-            switch(ch)
+            switch (ch)
             {
                 case '+':
                 case '-':
                 case 'X':
                 case '÷':
+                case '√':
                     return true;
             }
             return false;
@@ -65,7 +66,7 @@ namespace CPE200Lab1
             isNumberPart = false;
             isContainDot = false;
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
+            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length-2]))
             {
                 lblDisplay.Text += " " + ((Button)sender).Text + " ";
                 isSpaceAllowed = false;
@@ -102,13 +103,13 @@ namespace CPE200Lab1
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
-        {            
+        {
             try
             {
                 string result = engine.Process(lblDisplay.Text);
                 if (result is "E")
                 {
-                    result = RPNcal.Process(lblDisplay.Text);
+                    result = RPNcal.Process(lblDisplay.Text); 
                     if (result is "E")
                     {
                         lblDisplay.Text = "Error";
@@ -183,6 +184,20 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
+            }
+        }
+
+        private void btn_Operator_Click(object sender, EventArgs e)
+        {
+            string opt = ((Button)sender).Text;
+            string result = engine.unaryCalculate(opt,lblDisplay.Text);
+            if (result is "E")
+            {
+                lblDisplay.Text = "Error";                
+            }
+            else
+            {
+                lblDisplay.Text = result;
             }
         }
     }
