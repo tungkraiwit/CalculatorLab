@@ -190,7 +190,7 @@ namespace CPE200Lab1
         private void btn_Operator_Click(object sender, EventArgs e)
         {
             string opt = ((Button)sender).Text;
-            string result = engine.unaryCalculate(opt,lblDisplay.Text);
+            string result = engine.calculate(opt,lblDisplay.Text);
             if (result is "E")
             {
                 lblDisplay.Text = "Error";                

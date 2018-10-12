@@ -30,7 +30,7 @@ namespace CPE200Lab1
             return false;
         }
 
-        public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
+        public string calculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
             {
